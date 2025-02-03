@@ -1,6 +1,6 @@
-class Bq:
-    def query():
-        return BqQuery()
+
+def bq():
+    return BqQuery()
         
 
 class BqQuery():
@@ -30,20 +30,20 @@ class BqQuery():
         if isinstance(condition, BqQuery):
             self.query += f"WHERE ({condition})\n"
         else:
-            self.query += f"WHERE {condition}"
+            self.query += f"WHERE {condition}\n"
         return self
     def having(self,condition):
         if isinstance(condition, BqQuery):
             self.query += f"HAVING ({condition})\n"
         else:
-            self.query += f"HAVING {condition}"
+            self.query += f"HAVING {condition}\n"
         return self
     def __str__(self):
         return self.query
 
 
 
-# Chaining with a subquery in fromTable
-result = Bq.query().select("A").fromTable(Bq.query().select("B").fromTable("C"))
 
-print(result)
+# result = bq().select("A").fromTable(bq().select("B").fromTable("C").where(""" "b"="c" """)).where("A=B")
+
+# print(result)
